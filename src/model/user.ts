@@ -23,9 +23,9 @@ const userSchema: Schema<IUser> = new Schema({
         required: true,
     },
     isAdmin: {
-        type: Boolean,
+        type: String,
         required: true,
-        default: false
+        default: 'Member'
     }
 }, {
     timestamps: true

@@ -1,13 +1,13 @@
 import { Schema, model, Document } from 'mongoose'
 
-export interface IReview extends Document {
+interface IReview extends Document {
     name: string
     rating: number
     comment?: string
     user: String
 }
 
-export interface IProduct extends Document {
+interface IProduct extends Document {
     user: string
     name: string
     image: string

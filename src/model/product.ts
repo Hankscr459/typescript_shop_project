@@ -1,27 +1,27 @@
 import { Schema, model, Document } from 'mongoose'
 
-export interface ReviewType extends Document {
+export interface IReview extends Document {
     name: string
     rating: number
     comment?: string
     user: String
 }
 
-export interface ProductType extends Document {
+export interface IProduct extends Document {
     user: string
     name: string
     image: string
     brand: string
     category: string
     description: string
-    reviews?: ReviewType[]
+    reviews?: IReview[]
     rating: number
     numReviews: number
     price: number
     countInStock: number
 }
 
-const reviewSchema = new Schema({
+const reviewSchema : Schema<IReview> = new Schema({
     name: { type: String, required: true },
     rating: { type: Number, required: true },
     comment: { type: String, required: true },
@@ -34,7 +34,7 @@ const reviewSchema = new Schema({
     timestamps: true
 })
 
-const productSchema = new Schema({
+const productSchema : Schema<IProduct> = new Schema({
     user: {
         type: Schema.Types.ObjectId,
         required: true,
@@ -85,6 +85,6 @@ const productSchema = new Schema({
     timestamps: true
 })
 
-const Product = model<ProductType>('Product', productSchema)
+const Product = model('Product', productSchema)
 
 export default Product

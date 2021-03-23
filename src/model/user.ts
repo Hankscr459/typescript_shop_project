@@ -1,13 +1,14 @@
 import { Schema, model, Document } from 'mongoose'
+import bcrypt from 'bcryptjs'
 
-export interface UserType extends Document {
+interface IUser extends Document {
     name: string
     email: string
     password: string
     isAdmin?: String
 }
 
-const userSchema = new Schema({
+const userSchema: Schema<IUser> = new Schema({
     name: {
         type: String,
         required: true,
@@ -30,6 +31,18 @@ const userSchema = new Schema({
     timestamps: true
 })
 
-const User = model<UserType>('User', userSchema)
+userSchema.methods.matchPassword = async function(enteredPassword) {
+    return await bcrypt.compare(enteredPassword, this.password)
+}
+
+userSchema.pre('save', async function (next) {
+    if (!this.isModified('password')) {
+        next()
+    }
+    const salt = await bcrypt.genSalt(10)
+    this.password = await bcrypt.hash(this.password, salt)
+})
+
+const User = model('User', userSchema)
 
 export default User

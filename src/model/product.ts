@@ -4,6 +4,7 @@ export interface ReviewType extends Document {
     name: string
     rating: number
     comment?: string
+    user: String
 }
 
 export interface ProductType extends Document {
@@ -23,7 +24,12 @@ export interface ProductType extends Document {
 const reviewSchema = new Schema({
     name: { type: String, required: true },
     rating: { type: Number, required: true },
-    comment: { type: String, required: true }
+    comment: { type: String, required: true },
+    user: {
+        type: Schema.Types.ObjectId,
+        required: true,
+        ref: 'User'
+    }
 }, {
     timestamps: true
 })

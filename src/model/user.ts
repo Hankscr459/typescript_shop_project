@@ -5,7 +5,9 @@ interface IUser extends Document {
     name: string
     email: string
     password: string
-    isAdmin?: String
+    isAdmin?: string
+    bonusPoint: number
+    history: object[]
 }
 
 const userSchema: Schema<IUser> = new Schema({
@@ -26,6 +28,15 @@ const userSchema: Schema<IUser> = new Schema({
         type: String,
         required: true,
         default: 'Member'
+    },
+    bonusPoint: {
+        type: Number,
+        required: true,
+        default: 0
+    },
+    history: {
+        type: Array,
+        default: []
     }
 }, {
     timestamps: true

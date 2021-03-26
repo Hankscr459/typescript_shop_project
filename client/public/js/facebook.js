@@ -1,4 +1,3 @@
-
 var accessToken = null
 var userID = null
 
@@ -21,14 +20,15 @@ document.getElementById("facebookLogin").onclick = function()  {
   
   function statusChangeCallback(response){
      if(response.status === 'connected'){
-       console.log('Logged in and authenticated');
-       console.log(response)
-       console.log(response.authResponse.accessToken)
+      //  console.log('Logged in and authenticated');
+      //  console.log(response)
+      //  console.log(response.authResponse.accessToken)
        accessToken = response.authResponse.accessToken
        userID = response.authResponse.userID
        testAPI();
      } else {
        console.log('Not authenticated');
+       document.getElementById("facebookError").innerHTML = 'Not authenticated'
      }
    }
    
@@ -36,7 +36,7 @@ document.getElementById("facebookLogin").onclick = function()  {
 function testAPI(){
   FB.api('/me?fields=name,email,birthday,location', function(response){
     if(response && !response.error){
-      console.log(response);
+      // console.log(response);
       const data = { userID, accessToken  } 
       
 
@@ -54,14 +54,16 @@ function testAPI(){
       })
       .catch(err => {
           console.log(err)
+          document.getElementById("facebookError").innerHTML = `${err}`
+          return response.json()
       })
     }
 
-    FB.api('/me/feed', function(response){
-      if(response && !response.error){
-        console.log(response);
-      }
-    });
+    // FB.api('/me/feed', function(response){
+    //   if(response && !response.error){
+    //     console.log(response);
+    //   }
+    // });
   })
 }
 

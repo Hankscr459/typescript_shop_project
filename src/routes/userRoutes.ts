@@ -1,8 +1,12 @@
 import { Router } from 'express'
-import { Hello } from '../controller/user'
+import { 
+    Hello,
+    facebookLogin
+} from '../controller/user'
 
 const router = Router()
 
 router.get('/', Hello)
+router.post('/facebookLogin', facebookLogin)
 
 export default router

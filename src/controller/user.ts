@@ -13,7 +13,7 @@ export const Hello: RequestHandler = async (req, res, next) => {
     res.status(201).json({message: 'Hello world'})
 }
 
-exports.facebookLogin = (req: any, res: any) => {
+export const facebookLogin = (req: any, res: any) => {
     console.log('FACEBOOK LOGIN REQ BODY', req.body)
     const { userID, accessToken } = req.body
 

@@ -3,6 +3,7 @@ import dotenv from 'dotenv'
 import { json } from 'body-parser'
 import connectDB from './config/db'
 import morgan from 'morgan'
+import cors from 'cors'
 import colors from 'colors'
 
 import { errorHandler, notFound } from './middleware/errorMiddleware'
@@ -20,6 +21,7 @@ if(process.env.NODE_ENV === 'development') {
 }
 
 app.use(json())
+app.use(cors());
 
 app.use('/api/users', userRoutes)
 

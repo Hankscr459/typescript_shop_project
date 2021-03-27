@@ -21,7 +21,7 @@ document.getElementById("facebookLogin").onclick = function()  {
   function statusChangeCallback(response){
      if(response.status === 'connected'){
       //  console.log('Logged in and authenticated');
-       console.log(response)
+      //  console.log(response)
       //  console.log(response.authResponse.accessToken)
        accessToken = response.authResponse.accessToken
        userID = response.authResponse.userID
@@ -50,12 +50,18 @@ function testAPI(){
       })  
 
       .then(response => {
-        return response.json()
+        response.json().then((res) => {
+          const jwt = {
+            token: res.token
+          }
+
+          localStorage.setItem('jwt', JSON.stringify(jwt))
+        })
+        
       })
       .catch(err => {
-          console.log(err)
-          document.getElementById("facebookError").innerHTML = `${err}`
-          return response.json()
+        console.log(err)
+        document.getElementById("facebookError").innerHTML = `${err}`
       })
     }
 

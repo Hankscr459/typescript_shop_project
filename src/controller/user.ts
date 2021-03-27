@@ -1,11 +1,8 @@
 import User from '../model/user'
 import { RequestHandler } from 'express'
+import asyncHandler from 'express-async-handler'
 import jwt  from 'jsonwebtoken'
 import fetch from 'node-fetch'
-
-export interface ProcessEnv {
-    [key: string]: string | undefined
-}
 
 export const Hello: RequestHandler = async (req, res, next) => {
 
@@ -13,14 +10,14 @@ export const Hello: RequestHandler = async (req, res, next) => {
     res.status(201).json({message: 'Hello world'})
 }
 
-export const facebookLogin = (req: any, res: any) => {
+export const facebookLogin: RequestHandler = asyncHandler ( async (req, res: any) => {
     console.log('FACEBOOK LOGIN REQ BODY', req.body)
     const { userID, accessToken } = req.body
 
     const url = `https://graph.facebook.com/v2.11/${userID}/?fields=id,name,email&access_token=${accessToken}`
     
     return (
-        fetch(url, {
+        await fetch(url, {
             method: 'GET'
         })
             .then(response => response.json())
@@ -58,9 +55,9 @@ export const facebookLogin = (req: any, res: any) => {
                 })
             })
     )
-}
+})
 
-export const userInfo = async (req: any, res: any) => {
+export const userInfo: RequestHandler = asyncHandler ( async (req: any, res) => {
     const user = await User.findById(req.user._id)
 
     if(user) {
@@ -73,4 +70,4 @@ export const userInfo = async (req: any, res: any) => {
         res.status(404)
         throw new Error('User not found')
     }
-}
+})

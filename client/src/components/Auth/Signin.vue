@@ -5,7 +5,7 @@
     <p id="facebookError"></p>
     <a 
       id="lineLogin" 
-      :href="lineUrl + '/dialog/oauth/weblogin?response_type=code&client_id=' + line_client_id + '&redirect_uri=' + line_redirect + '&state=123abc'"
+      :href="lineUrl + '?response_type=code&client_id=' + line_client_id + '&redirect_uri=' + line_redirect + '&state=123abc&scope=openid%20profile&nonce=09876xyz'"
       @click="lineLogin()"
     >
     Line Login
@@ -44,12 +44,12 @@ export default {
             "Content-Type": "application/x-www-form-urlencoded"
           }
       }
-      axios.post('https://api.line.me/v2/oauth/accessToken',
+      axios.post('https://api.line.me/oauth2/v2.1/token',
         params,
         config
       )
         .then(res => {
-          console.log(res.data.access_token)
+          console.log(res.data.id_token)
         })
         .catch(err => {
           console.log(err)

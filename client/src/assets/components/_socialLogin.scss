@@ -1,0 +1,30 @@
+#facebookLogin {
+    background-color: rgba($color: #372ead, $alpha: 1.0);
+    color: rgba($color: #fff, $alpha: 1.0);
+    font-size: 2rem;
+    padding: 1rem;
+    border-radius: .5rem;
+    width: 100%;
+    outline: none;
+    cursor: pointer;
+    &:hover {
+        background-color: rgba($color: #453dbd, $alpha: 1.0);
+    }
+}
+
+#lineLogin {
+    display: flex;
+    justify-content: center;
+    margin-top: 2rem;
+    background-color: rgba($color: #43d663, $alpha: 1.0);
+    color: rgba($color: #fff, $alpha: 1.0);
+    font-size: 2rem;
+    padding: 1rem;
+    border-radius: .5rem;
+    width: 100%;
+    text-decoration: none;
+    cursor: pointer;
+    &:hover {
+        background-color: rgba($color:#60e24f, $alpha: 1.0);
+    }
+}

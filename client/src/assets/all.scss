@@ -1,7 +1,7 @@
-h1 {
-    color: teal;
-}
+@import './base/base';
 
-#facebookLogin {
-    padding: 1rem;
-}
+@import './layout/layouts';
+
+@import './components/socialLogin';
+
+@import './pages/signin';

@@ -1,9 +1,5 @@
 <template>
-  <div id="app">
-    <img id="facebookLogin" alt="Vue logo" src="./assets/logo.png">
-    <p id="facebookError"></p>
-    <h1>Hello</h1>
-  </div>
+    <router-view></router-view>
 </template>
 
 <script>

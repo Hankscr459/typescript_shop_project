@@ -60,7 +60,33 @@ export default {
             config
           )
             .then(response => {
-              console.log(response)
+              console.log(response.data)
+              const data = { 
+                name: response.data.name, 
+                email: response.data.email
+              }
+              const config = {
+                headers: {
+                  Accept: 'application/json',
+                  "Content-Type": "application/json"
+                }
+              }
+              axios.post(`${process.env.VUE_APP_BACKEND_URL}/users/lineLogin`,
+                data,
+                config
+              )
+                .then(res => {
+                  console.log(res)
+                    const jwt = {
+                      token: res.data.token
+                    }
+
+                    localStorage.setItem('jwt', JSON.stringify(jwt))
+                    this.$router.push('/')
+                })
+                .catch(err => {
+                  console.log(err)
+                })
             })
             .catch(err => {
               console.log(err)

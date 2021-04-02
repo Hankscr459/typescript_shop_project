@@ -57,6 +57,40 @@ export const facebookLogin: RequestHandler = asyncHandler ( async (req, res: any
     )
 })
 
+
+export const lineLogin: RequestHandler = asyncHandler ( async (req, res: any) => {
+    console.log('LINE LOGIN REQ BODY', req.body)
+    const { email, name } = req.body
+
+    
+    return (
+        User.findOne({ email }).exec((err: string, user: any) => {
+            if (user) {
+                const token = jwt.sign({ _id: user._id }, process.env.JWT_SECRET!, { expiresIn: '7d' })
+                const {_id, email, name, role } = user
+                return res.json({
+                    token,
+                    user: {_id, email, name, role }
+                })
+            } else {
+                let password = email + process.env.JWT_SECRET
+                user = new User({ name, email, password})
+                user.save((err: string, data: any) => {
+                    if (err) {
+                        console.log('ERROR FACEBOOK LOGIN ON USER SAVE', err)
+                        return res.status(400).json({
+                            error: 'User signup failed with facebook'
+                        })
+                    }
+                    const token = jwt.sign({ _id: data._id }, process.env.JWT_SECRET!, { expiresIn: '7d' })
+                    const { _id, email, name, role } = user
+                    res.cookie('token', token, { expiresIn: '1d' })
+                    return res.json({ token, user: { _id, email, name, role } })
+                })
+            }
+        })
+    )})
+
 export const userInfo: RequestHandler = asyncHandler ( async (req: any, res) => {
     const user = await User.findById(req.user._id)
 

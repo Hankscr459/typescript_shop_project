@@ -1,17 +1,39 @@
 <template>
-  <div class="container Signin">
-    <h1 class="Signin__title">Sign in</h1>
-    <button id="facebookLogin">Facebook Login</button>
-    <p id="facebookError"></p>
-    <a 
-      id="lineLogin" 
-      :href="lineUrl + '?response_type=code&client_id=' + line_client_id + '&redirect_uri=' + line_redirect + '&state=123abc&scope=openid%20profile%20email&nonce=09876xyz'"
-      @click="lineLogin()"
-    >
-    Line Login
-    </a>
+  <div>
+      
+      <div class="Signin">
+      
+        <h1 class="Signin__title">Sign in</h1>
+        <form>
+          <label for="email" class="Signin__Email">
+            <span class="Signin__Email--title">Email: </span>
+            <input type="email" class="input" v-model="email">
+          </label>
+          <label for="password" class="Signin__Password">
+            <span class="Signin__Email--title">Password: </span>
+            <input type="password" class="input" v-model="password">
+          </label>
+          <button type="submit" class="Signin__submit">Login</button>
+        </form>
+
+        <router-link :to="{ name: 'App' }"  class="Signin__link">No account?</router-link>
+
+        <h2 class="Signin__subTitle">Social Login</h2>
+        <button id="facebookLogin">Facebook Login</button>
+        <p id="facebookError"></p>
+        <a 
+          id="lineLogin" 
+          :href="lineUrl + '?response_type=code&client_id=' + line_client_id + '&redirect_uri=' + line_redirect + '&state=123abc&scope=openid%20profile%20email&nonce=09876xyz'"
+          @click="lineLogin()"
+        >
+        Line Login
+        </a>
+      
+      </div>
+      <div class="background"></div>
     
   </div>
+  
 </template>
 
 <script>
@@ -21,6 +43,8 @@ export default {
   name: 'Signin',
   data () {
     return {
+      email: '',
+      password: '',
       lineUrl: process.env.VUE_APP_LINE,
       line_client_id: process.env.VUE_APP_LINE_CLIENT_ID,
       line_redirect: process.env.VUE_APP_LINE_REDIRECT,

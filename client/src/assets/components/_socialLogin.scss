@@ -12,6 +12,20 @@
     }
 }
 
+#twitterLogin {
+    background-color: rgba($color: #6abae9, $alpha: 1.0);
+    color: rgba($color: #fff, $alpha: 1.0);
+    font-size: 2rem;
+    padding: 1rem;
+    border-radius: .5rem;
+    width: 100%;
+    outline: none;
+    cursor: pointer;
+    &:hover {
+        background-color: rgba($color: #84ccf5, $alpha: 1.0);
+    }
+}
+
 #lineLogin {
     display: flex;
     justify-content: center;

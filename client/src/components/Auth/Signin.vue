@@ -5,7 +5,7 @@
     <p id="facebookError"></p>
     <a 
       id="lineLogin" 
-      :href="lineUrl + '?response_type=code&client_id=' + line_client_id + '&redirect_uri=' + line_redirect + '&state=123abc&scope=openid%20profile&nonce=09876xyz'"
+      :href="lineUrl + '?response_type=code&client_id=' + line_client_id + '&redirect_uri=' + line_redirect + '&state=123abc&scope=openid%20profile%20email&nonce=09876xyz'"
       @click="lineLogin()"
     >
     Line Login
@@ -49,7 +49,22 @@ export default {
         config
       )
         .then(res => {
-          console.log(res.data.id_token)
+          const param = new URLSearchParams()
+
+          param.append('id_token', res.data.id_token)
+          param.append('client_id', `${process.env.VUE_APP_LINE_CLIENT_ID}`)
+
+          // console.log(res.data.id_token)
+          axios.post('https://api.line.me/oauth2/v2.1/verify', 
+            param,
+            config
+          )
+            .then(response => {
+              console.log(response)
+            })
+            .catch(err => {
+              console.log(err)
+            })
         })
         .catch(err => {
           console.log(err)

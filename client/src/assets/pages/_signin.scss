@@ -48,6 +48,14 @@
         background-color: rgba($color: #2594b6, $alpha: 1.0);
         color: #fff;
         cursor: pointer;
+        border: none;
+        outline: none;
+        transition: background-color .3s;
+        &:active, &:focus, &:hover {
+            background-color: rgba($color: #56b4d1, $alpha: 1.0);
+            border: none;
+            outline: none;
+        }
     }
 
     &__link {

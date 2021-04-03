@@ -33,13 +33,17 @@
         </span>
 
         <h2 class="Signin__subTitle">Social Login</h2>
-        <button id="facebookLogin" @click="facebookLogin">Facebook Login</button>
+        <button id="facebookLogin" @click="facebookLogin">
+          <i class="fab fa-facebook-square"></i>
+          Facebook Login
+        </button>
         <p id="facebookError"></p>
         <a 
           id="lineLogin" 
           :href="lineUrl + '?response_type=code&client_id=' + line_client_id + '&redirect_uri=' + line_redirect + '&state=123abc&scope=openid%20profile%20email&nonce=09876xyz'"
           @click="lineLogin()"
         >
+        <i class="fab fa-line"></i>
         Line Login
         </a>
       

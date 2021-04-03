@@ -1,12 +1,13 @@
 #facebookLogin {
     background-color: rgba($color: #372ead, $alpha: 1.0);
     color: rgba($color: #fff, $alpha: 1.0);
-    font-size: 2rem;
+    font-size: 2.5rem;
     padding: 1rem;
     border-radius: .5rem;
     width: 100%;
     outline: none;
     cursor: pointer;
+    transition: background-color .3s;
     &:hover {
         background-color: rgba($color: #453dbd, $alpha: 1.0);
     }
@@ -21,6 +22,7 @@
     width: 100%;
     outline: none;
     cursor: pointer;
+    transition: background-color .3s;
     &:hover {
         background-color: rgba($color: #84ccf5, $alpha: 1.0);
     }
@@ -29,15 +31,18 @@
 #lineLogin {
     display: flex;
     justify-content: center;
+    align-items: center;
     margin-top: 2rem;
     background-color: rgba($color: #43d663, $alpha: 1.0);
     color: rgba($color: #fff, $alpha: 1.0);
-    font-size: 2rem;
-    padding: 1rem;
+    font-size: 2.5rem;
+    padding: .5rem 1rem;
     border-radius: .5rem;
     width: 100%;
     text-decoration: none;
     cursor: pointer;
+    transition: background-color .3s;
+    
     &:hover {
         background-color: rgba($color:#60e24f, $alpha: 1.0);
     }

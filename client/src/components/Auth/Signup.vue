@@ -9,32 +9,32 @@
         
         <form @submit.prevent="handleSubmit">
 
-            <label for="name" class="signup__name">
-            <span class="signup__name--title">Name: </span>
-            <input type="text" class="input" v-model="name" :placeholder="'\uf007 Your name'">
-            </label>
+          <label for="name" class="signup__name">
+          <span class="signup__name--title">Name: </span>
+          <input type="text" class="input" v-model="name" :placeholder="'\uf007 Your name'">
+          </label>
 
-            <label for="email" class="signup__Email">
-            <span class="signup__Email--title">Email: </span>
-            <input type="email" class="input" v-model="email" :placeholder="'\uf0e0 Your Email'">
-            </label>
+          <label for="email" class="signup__Email">
+          <span class="signup__Email--title">Email: </span>
+          <input type="email" class="input" v-model="email" :placeholder="'\uf0e0 Your Email'">
+          </label>
 
-            <label for="password" class="signup__Password">
-            <span class="signup__Email--title">Password: </span>
-            <input type="password" class="input" v-model="password" :placeholder="'\uf070 Your password'">
-            </label>
+          <label for="password" class="signup__Password">
+          <span class="signup__Email--title">Password: </span>
+          <input type="password" class="input" v-model="password" :placeholder="'\uf070 Your password'">
+          </label>
 
-            <label for="password" class="signup__Password">
-            <span class="signup__Email--title">Password: </span>
-            <input type="password" class="input" v-model="comfirmedPassword" :placeholder="'\uf058 Confirmed password'">
-            </label>
+          <label for="password" class="signup__Password">
+          <span class="signup__Email--title">Password: </span>
+          <input type="password" class="input" v-model="comfirmedPassword" :placeholder="'\uf058 Confirmed password'">
+          </label>
 
-            <button type="submit" class="signup__submit">Sign up</button>
+          <button type="submit" class="signup__submit">Sign up</button>
 
-            <router-link :to="{ name: 'Signin' }"  class="signup__link">
-              <i class="fas fa-info"></i>
-              Have account or social login?
-            </router-link>
+          <router-link :to="{ name: 'Signin' }"  class="signup__link">
+            <i class="fas fa-info"></i>
+            Have account or social login?
+          </router-link>
 
         </form>
     

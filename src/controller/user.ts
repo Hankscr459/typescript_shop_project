@@ -3,12 +3,49 @@ import { RequestHandler } from 'express'
 import asyncHandler from 'express-async-handler'
 import jwt  from 'jsonwebtoken'
 import fetch from 'node-fetch'
+import generateToken from '../utils/generateToken'
 
 export const Hello: RequestHandler = async (req, res, next) => {
 
 
     res.status(201).json({message: 'Hello world'})
 }
+
+export const signup: RequestHandler = asyncHandler ( async (req, res) => {
+    // console.log("req.body", req.body);
+    const user = await new User(req.body);
+    await user.save((err: string, user: any) => {
+        if (err) {
+            return res.status(400).json({
+                error: 'Email is taken'
+            });
+        }
+        user.salt = undefined;
+        user.hashed_password = undefined;
+        res.json({
+            user
+        })
+    })
+})
+
+export const signin: RequestHandler = asyncHandler(async (req, res) => {
+    const { email, password } = req.body
+    
+    const user = await User.findOne({ email })
+
+    if(user && (await user.matchPassword(password))) {
+        res.json({
+            _id: user._id,
+            name: user.name,
+            email: user.email,
+            role: user.role,
+            token: generateToken(user._id)
+        })
+    } else {
+        res.status(401)
+        throw new Error('Invalid email or password')
+    }
+})
 
 export const facebookLogin: RequestHandler = asyncHandler ( async (req, res: any) => {
     console.log('FACEBOOK LOGIN REQ BODY', req.body)

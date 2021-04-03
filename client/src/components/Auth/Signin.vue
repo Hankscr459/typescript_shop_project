@@ -2,24 +2,38 @@
   <div>
       
       <div class="Signin">
-      
+        <span>
+          <router-link :to="{ name: 'App' }"  class="Signin__link">
+            Go to Home
+          </router-link>
+        </span>
         <h1 class="Signin__title">Sign in</h1>
-        <form>
+
+        <form @submit.prevent="handleSubmit">
+
           <label for="email" class="Signin__Email">
             <span class="Signin__Email--title">Email: </span>
-            <input type="email" class="input" v-model="email">
+            <input type="email" class="input" v-model="email" :placeholder="'\uf0e0 Your Email'">
           </label>
+
           <label for="password" class="Signin__Password">
             <span class="Signin__Email--title">Password: </span>
-            <input type="password" class="input" v-model="password">
+            <input type="password" class="input" v-model="password" :placeholder="'\uf070 Your password'">
           </label>
+
           <button type="submit" class="Signin__submit">Login</button>
+
         </form>
 
-        <router-link :to="{ name: 'App' }"  class="Signin__link">No account?</router-link>
+        <span>
+          <router-link :to="{ name: 'Signup' }"  class="Signin__link">
+            <i class="fas fa-info"></i>
+            No account? Signup
+          </router-link>
+        </span>
 
         <h2 class="Signin__subTitle">Social Login</h2>
-        <button id="facebookLogin">Facebook Login</button>
+        <button id="facebookLogin" @click="facebookLogin">Facebook Login</button>
         <p id="facebookError"></p>
         <a 
           id="lineLogin" 
@@ -52,6 +66,18 @@ export default {
     }
   },
   methods: {
+    handleSubmit () {
+      const values = {
+        email: this.email,
+        password: this.password
+      }
+      console.log(values)
+    },
+    facebookLogin () {
+      if (localStorage.getItem('jwt') !== undefined) {
+        this.$router.push('/')
+      }
+    },
     lineLogin() {
       if(this.auth_code != null) {
       // console.log(this.$route.query.code)

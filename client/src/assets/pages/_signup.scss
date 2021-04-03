@@ -1,5 +1,5 @@
 
-.Signin {
+.signup {
     padding: 3rem;
     max-width: 50rem;
     display: flex;
@@ -12,6 +12,18 @@
     }
     &__subTitle {
         font-size: 4rem;
+    }
+
+    &__name {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 2rem;
+
+        &--title {
+            font-size: 2rem;
+            font-weight: 500;
+        }
     }
 
     &__Email {
@@ -43,7 +55,7 @@
         width: 100%;
         font-size: 2rem;
         padding: 1rem 2rem;
-        margin: 2rem 0rem;
+        margin: 2rem 0;
         border-radius: .5rem;
         background-color: rgba($color: #2594b6, $alpha: 1.0);
         color: #fff;
@@ -51,7 +63,7 @@
     }
 
     &__link {
-        position: relative;
+        // text-decoration: none;
         font-size: 2rem;
     }
 }

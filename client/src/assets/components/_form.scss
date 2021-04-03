@@ -6,8 +6,16 @@
     border-radius: 1rem;
     max-width: 32rem;
     border: .4rem solid #666;
+    box-shadow: 0px 0px .1rem 0rem transparent;
+    transition: box-shadow .3s;
+
+    font-family: 'Font Awesome\ 5 Free' !important;
+    font-style: normal !important;
+    font-weight: normal;
+    text-decoration: inherit;
+
     &:active, &:focus {
-        border: .4rem solid #56b4ef;
-        box-shadow: 0px 0px .3rem .1rem #bdd9f0;
+        border: .4rem solid #2483be;
+        box-shadow: 0px 0px .1rem .5rem #82b0d6;
     }
 }

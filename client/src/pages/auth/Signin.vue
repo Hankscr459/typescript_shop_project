@@ -56,6 +56,7 @@
 
 <script>
 import axios from 'axios'
+import { mapGetters } from 'vuex'
 
 export default {
   name: 'Signin',
@@ -75,7 +76,7 @@ export default {
         email: this.email,
         password: this.password
       }
-      console.log(values)
+      this.$store.dispatch('userModules/signin', values)
     },
     facebookLogin () {
       if (localStorage.getItem('jwt') !== undefined) {
@@ -151,6 +152,9 @@ export default {
         })
       }
     }
+  },
+  computed: {
+    ...mapGetters('userModules', ['user'])
   },
   created() {
     this.lineLogin()

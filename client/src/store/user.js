@@ -37,6 +37,38 @@ export default {
                 .catch(err => {
                     console.log('Register err: ',err)
                 })
+        },
+        signin(context, { email, password }) {
+
+            const data = {
+                email,
+                password
+            }
+
+            const config = {
+                headers: {
+                    Accept: 'application/json',
+                    "Content-Type": "application/json"
+                }
+            }
+
+            axios.post(`${process.env.VUE_APP_BACKEND_URL}/users/signin`,
+                data,
+                config
+            )
+                .then(res => {
+                    context.commit('setUser', res.data)
+                    console.log('Signin success: ', res.data)
+                    const jwt = {
+                        token: res.data.token
+                      }
+  
+                    localStorage.setItem('jwt', JSON.stringify(jwt))
+                    router.push('/')
+                })
+                .catch(err => {
+                    console.log(err)
+                })
         }
     },
     getters: {

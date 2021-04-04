@@ -39,6 +39,7 @@ export const signin: RequestHandler = asyncHandler(async (req, res) => {
             name: user.name,
             email: user.email,
             role: user.role,
+            bonusPoint: user.bonusPoint,
             token: generateToken(user._id)
         })
     } else {
@@ -136,6 +137,8 @@ export const userInfo: RequestHandler = asyncHandler ( async (req: any, res) => 
             _id: user._id,
             name: user.name,
             email: user.email,
+            role: user.role,
+            bonusPoint: user.bonusPoint
         })
     } else {
         res.status(404)

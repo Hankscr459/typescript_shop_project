@@ -13,12 +13,24 @@
 
           <label for="email" class="Signin__Email">
             <span class="Signin__Email--title">Email: </span>
-            <input type="email" class="input" v-model="email" :placeholder="'\uf0e0 Your Email'">
+            <input 
+              type="email" 
+              class="input" 
+              v-model="email" 
+              :placeholder="'\uf0e0 Your Email'"
+              required
+            >
           </label>
 
           <label for="password" class="Signin__Password">
             <span class="Signin__Email--title">Password: </span>
-            <input type="password" class="input" v-model="password" :placeholder="'\uf070 Your password'">
+            <input 
+              type="password" 
+              class="input" 
+              v-model="password" 
+              :placeholder="'\uf070 Your password'"
+              required
+            >
           </label>
 
           <button type="submit" class="Signin__submit">Login</button>

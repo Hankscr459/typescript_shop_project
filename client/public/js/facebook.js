@@ -19,19 +19,19 @@ if (document.getElementById("facebookLogin") != null) {
   
     
     
-    function statusChangeCallback(response){
-       if(response.status === 'connected'){
-        //  console.log('Logged in and authenticated');
-        //  console.log(response)
-        //  console.log(response.authResponse.accessToken)
-         accessToken = response.authResponse.accessToken
-         userID = response.authResponse.userID
-         testAPI();
-       } else {
-         console.log('Not authenticated');
-         document.getElementById("facebookError").innerHTML = 'Not authenticated'
-       }
-     }
+  function statusChangeCallback(response){
+    if(response.status === 'connected'){
+    //  console.log('Logged in and authenticated');
+    //  console.log(response)
+    //  console.log(response.authResponse.accessToken)
+      accessToken = response.authResponse.accessToken
+      userID = response.authResponse.userID
+      testAPI();
+    } else {
+      console.log('Not authenticated');
+      document.getElementById("facebookError").innerHTML = 'Not authenticated'
+    }
+  }
      
   
   function testAPI(){
@@ -57,6 +57,7 @@ if (document.getElementById("facebookLogin") != null) {
             }
   
             localStorage.setItem('jwt', JSON.stringify(jwt))
+            document.location.href="/"
           })
           
         })

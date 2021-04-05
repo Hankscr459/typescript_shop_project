@@ -57,7 +57,9 @@ if (document.getElementById("facebookLogin") != null) {
             }
   
             localStorage.setItem('jwt', JSON.stringify(jwt))
-            document.location.href="/"
+            if (localStorage.getItem('jwt') != null && localStorage.getItem('jwt') != undefined) {
+              document.location.href="/"
+            }
           })
           
         })

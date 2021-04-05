@@ -63,7 +63,7 @@ export const facebookLogin: RequestHandler = asyncHandler ( async (req, res: any
                 const { email, name } = response
                 User.findOne({ email }).exec((err: string, user: any) => {
                     if (user) {
-                        const token = jwt.sign({ _id: user._id }, process.env.JWT_SECRET!, { expiresIn: '7d' })
+                        const token = jwt.sign({ id: user._id }, process.env.JWT_SECRET!, { expiresIn: '30d' })
                         const {_id, email, name, role } = user
                         return res.json({
                             token,
@@ -79,9 +79,9 @@ export const facebookLogin: RequestHandler = asyncHandler ( async (req, res: any
                                     error: 'User signup failed with facebook'
                                 })
                             }
-                            const token = jwt.sign({ _id: data._id }, process.env.JWT_SECRET!, { expiresIn: '7d' })
+                            const token = jwt.sign({ id: data._id }, process.env.JWT_SECRET!, { expiresIn: '30d' })
                             const { _id, email, name, role } = user
-                            res.cookie('token', token, { expiresIn: '1d' })
+                            res.cookie('token', token, { expiresIn: '30d' })
                             return res.json({ token, user: { _id, email, name, role } })
                         })
                     }
@@ -104,7 +104,7 @@ export const lineLogin: RequestHandler = asyncHandler ( async (req, res: any) =>
     return (
         User.findOne({ email }).exec((err: string, user: any) => {
             if (user) {
-                const token = jwt.sign({ _id: user._id }, process.env.JWT_SECRET!, { expiresIn: '7d' })
+                const token = jwt.sign({ id: user._id }, process.env.JWT_SECRET!, { expiresIn: '30d' })
                 const {_id, email, name, role } = user
                 return res.json({
                     token,
@@ -120,16 +120,17 @@ export const lineLogin: RequestHandler = asyncHandler ( async (req, res: any) =>
                             error: 'User signup failed with facebook'
                         })
                     }
-                    const token = jwt.sign({ _id: data._id }, process.env.JWT_SECRET!, { expiresIn: '7d' })
+                    const token = jwt.sign({ id: data._id }, process.env.JWT_SECRET!, { expiresIn: '30d' })
                     const { _id, email, name, role } = user
-                    res.cookie('token', token, { expiresIn: '1d' })
+                    res.cookie('token', token, { expiresIn: '30d' })
                     return res.json({ token, user: { _id, email, name, role } })
                 })
             }
-        })
+        })// expiresIn
     )})
 
 export const userInfo: RequestHandler = asyncHandler ( async (req: any, res) => {
+    console.log('user_id',req.user._id)
     const user = await User.findById(req.user._id)
 
     if(user) {

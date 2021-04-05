@@ -45,7 +45,7 @@
         </span>
 
         <h2 class="Signin__subTitle">Social Login</h2>
-        <button id="facebookLogin" @click="facebookLogin">
+        <button id="facebookLogin">
           <i class="fab fa-facebook-square"></i>
           Facebook Login
         </button>
@@ -89,11 +89,6 @@ export default {
         password: this.password
       }
       this.$store.dispatch('userModules/signin', values)
-    },
-    facebookLogin () {
-      if (localStorage.getItem('jwt') !== undefined) {
-        this.$router.push('/')
-      }
     },
     lineLogin() {
       if(this.auth_code != null) {

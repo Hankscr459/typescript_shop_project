@@ -22,19 +22,19 @@
                 <li>Activity</li>
               </ul>
             </li>
-            <router-link :to="{ name: 'Signin' }"  class="Signin__link" style="text-decoration: none; color: inherit;">
+            <router-link v-if="user == null" :to="{ name: 'Signin' }"  class="Signin__link" style="text-decoration: none; color: inherit;">
               <li class="navbar__list--item">
                   Signin
               </li>
             </router-link>
 
-            <router-link :to="{ name: 'Signup' }"  class="Signin__link" style="text-decoration: none; color: inherit;">
+            <router-link v-if="user == null" :to="{ name: 'Signup' }"  class="Signin__link" style="text-decoration: none; color: inherit;">
               <li class="navbar__list--item">
                   Signup
               </li>
             </router-link>
 
-            <li class="navbar__list--item">Signout</li>
+            <li  v-if="user != null" class="navbar__list--item" @click.prevent="logout">Signout</li>
         </ul>
         <input type="checkbox" class="navbar__checkbox" id="navi-toggle" @click="toggleMenu">
 
@@ -46,14 +46,14 @@
 </template>
 
 <script>
-
+import { mapGetters } from 'vuex';
 
 export default {
   name: 'Navbar',
   data () {
     return {
-      screenWidth: document.body.clientWidth || 1000
-    }// length
+      screenWidth: document.body.clientWidth
+    }
   },
   methods: {
     toggleMenu () {
@@ -65,6 +65,15 @@ export default {
           x[i].style.display = "flex";
         }
       }
+    },
+    getUser () {
+      if (JSON.parse(localStorage.getItem('jwt')) ? JSON.parse(localStorage.getItem('jwt')) : false) {
+        
+        this.$store.dispatch('userModules/getUserInfo', JSON.parse(localStorage.getItem('jwt')))
+      }
+    },
+    logout () {
+      this.$store.dispatch('userModules/logout')
     }
   },
   watch: {
@@ -72,15 +81,20 @@ export default {
       handler: function(val) {
         if (val != null) {
           if(val > 900) {
-          const x = document.getElementsByClassName('navbar__list--item')
-          for (var i=0;i<x.length;i+=1){
-            x[i].style.display = "flex";
+            const x = document.getElementsByClassName('navbar__list--item')
+            for (var i=0;i<x.length;i+=1){
+              x[i].style.display = "flex";
+            }
           }
         }
-        }
-        
       }
     }
+  },
+  computed: {
+    ...mapGetters('userModules', ['user'])
+  },
+  created () {
+    this.getUser()
   },
   mounted () {
       const that = this

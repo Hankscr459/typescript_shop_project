@@ -15,8 +15,8 @@ const router = Router()
 router.get('/', Hello)
 router.post('/signup', signup)
 router.post('/signin', signin)
+router.get('/userInfo', protect, userInfo)
 router.post('/facebookLogin', facebookLogin)
 router.post('/lineLogin', lineLogin)
-router.get('/userInfo', protect, userInfo)
 
 export default router

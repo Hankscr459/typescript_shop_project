@@ -3,7 +3,7 @@
       
       <div class="Signin">
         <span>
-          <router-link :to="{ name: 'App' }"  class="Signin__link">
+          <router-link :to="{ name: 'Home' }"  class="Signin__link">
             Go to Home
           </router-link>
         </span>

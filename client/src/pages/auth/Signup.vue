@@ -2,7 +2,7 @@
   <div>
       
     <div class="signup">
-        <router-link :to="{ name: 'App' }"  class="signup__link">
+        <router-link :to="{ name: 'Home' }"  class="signup__link">
           Go to Home
         </router-link>
         <h1 class="signup__title">Sign up</h1>

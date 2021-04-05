@@ -2,23 +2,39 @@
     <nav class="navbar">
       <div class="container">
           <ul class="navbar__list">
-          <li class="navbar__logo">Logo</li>
-          <li class="navbar__list--item">
-            <span>Products</span>
-            <ul class="navbar__list--item-drop">
-              <li>Cat1</li>
-              <li>Cat2</li>
-            </ul>
-          </li>
-          <li class="navbar__list--item">
-            <span>About</span>
-            <ul class="navbar__list--item-drop">
-              <li>Contact</li>
-              <li>Activity</li>
-            </ul>
-          </li>
-          <li class="navbar__list--item">Signin</li>
-          <li class="navbar__list--item">Signout</li>
+            <li class="navbar__logo">
+              <router-link :to="{ name: 'Home' }"  class="Signin__link" style="text-decoration: none; color: inherit; font-size: inherit;">
+                Logo
+              </router-link>
+            </li>
+            
+            <li class="navbar__list--item">
+              <span>Products</span>
+              <ul class="navbar__list--item-drop">
+                <li>Cat1</li>
+                <li>Cat2</li>
+              </ul>
+            </li>
+            <li class="navbar__list--item">
+              <span>About</span>
+              <ul class="navbar__list--item-drop">
+                <li>Contact</li>
+                <li>Activity</li>
+              </ul>
+            </li>
+            <router-link :to="{ name: 'Signin' }"  class="Signin__link" style="text-decoration: none; color: inherit;">
+              <li class="navbar__list--item">
+                  Signin
+              </li>
+            </router-link>
+
+            <router-link :to="{ name: 'Signup' }"  class="Signin__link" style="text-decoration: none; color: inherit;">
+              <li class="navbar__list--item">
+                  Signup
+              </li>
+            </router-link>
+
+            <li class="navbar__list--item">Signout</li>
         </ul>
         <input type="checkbox" class="navbar__checkbox" id="navi-toggle" @click="toggleMenu">
 
@@ -36,8 +52,8 @@ export default {
   name: 'Navbar',
   data () {
     return {
-      screenWidth: document.body.clientWidth
-    }
+      screenWidth: document.body.clientWidth || 1000
+    }// length
   },
   methods: {
     toggleMenu () {
@@ -52,20 +68,17 @@ export default {
     }
   },
   watch: {
-    screenWidth (val) {
-      if(val > 900) {
-        const x = document.getElementsByClassName('navbar__list--item')
-        for (var i=0;i<x.length;i+=1){
-          x[i].style.display = "flex";
+    screenWidth: {
+      handler: function(val) {
+        if (val != null) {
+          if(val > 900) {
+          const x = document.getElementsByClassName('navbar__list--item')
+          for (var i=0;i<x.length;i+=1){
+            x[i].style.display = "flex";
+          }
         }
-        const y = document.querySelector('navbar__icon::before')
-        for (var j=0;j<y.length;j+=1){
-          y[i].style.transform = "rotate(0deg)"
         }
-        const z = document.querySelector('navbar__icon')
-        for (var k=0;k<z.length;k+=1){
-          z[i].style.transform = "rotate(0deg)"
-        }
+        
       }
     }
   },

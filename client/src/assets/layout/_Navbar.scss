@@ -36,6 +36,11 @@
             flex-direction: column;
         }
 
+        & router-link {
+            text-decoration: none;
+            color: white;
+        }
+
         &--item {
             list-style: none;
             font-weight: bold;

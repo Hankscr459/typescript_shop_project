@@ -80,10 +80,13 @@ export default {
     screenWidth: {
       handler: function(val) {
         if (val != null) {
-          if(val > 900) {
-            const x = document.getElementsByClassName('navbar__list--item')
-            for (var i=0;i<x.length;i+=1){
+          
+          const x = document.getElementsByClassName('navbar__list--item')
+          for (var i=0;i<x.length;i+=1){
+            if(val > 900) {
               x[i].style.display = "flex";
+            } else {
+              x[i].style.display = "none";
             }
           }
         }

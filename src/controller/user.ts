@@ -126,7 +126,7 @@ export const lineLogin: RequestHandler = asyncHandler ( async (req, res: any) =>
                     return res.json({ token, user: { _id, email, name, role } })
                 })
             }
-        })// expiresIn
+        })
     )})
 
 export const userInfo: RequestHandler = asyncHandler ( async (req: any, res) => {
